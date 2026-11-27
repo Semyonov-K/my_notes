@@ -49,7 +49,7 @@ class Note(IntPkMixin, Base):
     )
     title: Mapped[str] = mapped_column(String(100), nullable=False)
     description: Mapped[str | None] = mapped_column(default=None)
-    deadline_date: Mapped[datetime | None] = mapped_column(default=None)
+    deadline_date: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), default=None)
     status: Mapped[NoteStatus] = mapped_column(Enum(NoteStatus), default=NoteStatus.active)
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
